@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\FacebookOAuthManager.cs" />
+    <Compile Include="DataAccess\BaseRepository.cs" />
+    <Compile Include="DataAccess\UserRepository.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
