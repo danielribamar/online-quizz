@@ -7,13 +7,13 @@
     {
         public static void RegisterUser(UserModel user)
         {
-            if (UserRepository.GetUser(user.FacebookId) == null)
+            if (UserRepository.Get(user.FacebookId) == null)
             {
-                UserRepository.RegisterUser(user);
+                UserRepository.Register(user);
             }
             else
             {
-
+                UserRepository.Update(user);
             }
         }
     }

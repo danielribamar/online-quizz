@@ -10,6 +10,9 @@ namespace OnlineQuizz.Web.Core.Models
         [JsonProperty("id")]
         public string FacebookId { get; set; }
 
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
 

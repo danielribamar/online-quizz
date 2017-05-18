@@ -2,7 +2,7 @@
 
 namespace OnlineQuizz.Web.Frontend.Controllers
 {
-    public class ClientController : BaseController
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

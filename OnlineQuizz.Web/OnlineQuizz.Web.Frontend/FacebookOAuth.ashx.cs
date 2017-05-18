@@ -8,7 +8,8 @@ namespace OnlineQuizz.Web.Frontend
 {
     using Core.Helpers;
     using Core.Models;
-    using OnlineQuizz.Web.Core.Business;
+    using Core.Business;
+    using System.Security.Claims;
 
     public class FacebookOAuth : IHttpHandler
     {
@@ -51,7 +52,19 @@ namespace OnlineQuizz.Web.Frontend
                         profile_data.AccessToken = access_token;
                         UserManager.RegisterUser(profile_data);
 
+                        var identity = new ClaimsIdentity(new[] {
+                new Claim(ClaimTypes.Name, $"{profile_data.FirstName} {profile_data.LastName}"),
+                new Claim(ClaimTypes.Email, profile_data.Email),
+                new Claim("FacebookId", profile_data.FacebookId)
+            },
+           "ApplicationCookie");
 
+                        var ctx = context.Request.GetOwinContext();
+                        var authManager = ctx.Authentication;
+
+                        authManager.SignIn(identity);
+
+                        context.Response.Redirect("/Home/Index/");
                     }
                     else
                     {
