@@ -7,6 +7,8 @@ using System.Net.Http.Headers;
 namespace OnlineQuizz.Web.Frontend
 {
     using Core.Helpers;
+    using Core.Models;
+    using OnlineQuizz.Web.Core.Business;
 
     public class FacebookOAuth : IHttpHandler
     {
@@ -45,21 +47,23 @@ namespace OnlineQuizz.Web.Frontend
 
                     if (response.IsSuccessStatusCode)
                     {
-                       var profile_data = response.Content.ReadAsAsync<User>();
-                        context.Response.Write(profile_data.Result.first_name);
+                        var profile_data = response.Content.ReadAsAsync<UserModel>().Result;
+                        profile_data.AccessToken = access_token;
+                        UserManager.RegisterUser(profile_data);
+
+
                     }
+                    else
+                    {
+                        //TODO: Handle error
+                    }
+                }
+                else
+                {
+                    //TODO: Handle error
                 }
             }
         }
-
-        public class User
-        {
-            public string id { get; set; }
-            public string first_name { get; set; }
-            public string last_name { get; set; }
-            public string access_token { get; set; }
-        }
-
         public bool IsReusable
         {
             get

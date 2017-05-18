@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\FacebookOAuthManager.cs" />
-    <Compile Include="DataAccess\BaseRepository.cs" />
+    <Compile Include="Business\UserManager.cs" />
     <Compile Include="DataAccess\UserRepository.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper">
+      <Version>1.50.2</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,11 +1,22 @@
-﻿namespace OnlineQuizz.Web.Core.Models
+﻿using Newtonsoft.Json;
+
+namespace OnlineQuizz.Web.Core.Models
 {
 
-    public class User
+    public class UserModel
     {
-        public string id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string access_token { get; set; }
+        public int Id { get; set; }
+
+        [JsonProperty("id")]
+        public string FacebookId { get; set; }
+
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
+
+        [JsonProperty("last_name")]
+        public string LastName { get; set; }
+
+        [JsonProperty("access_token")]
+        public string AccessToken { get; set; }
     }
 }
